@@ -1,22 +1,18 @@
 {% extends "layout.html.twig" %}
 
 {% block header %}
-    <header>
+<header>
     <h1>The league</h1>
-        <menu>
-            <li>
-                <a href="">Les teams</a>
-            </li>
-            <li>
-                <a href="">Les players</a>
-            </li>
-            <li>
-                <a href="">Les matchs</a>
-            </li>
-        </menu>
-        <h2>Tout sur la league</h2>
-        <p>Les players, les teams et l'actu des matchs</p>
-    </header>
+    <nav>
+        <ul>
+            <li><a href="index.php?route=teams">Les teams</a></li>
+            <li><a href="">Les players</a></li>
+            <li><a href="">Les matchs</a></li>
+        </ul>
+    </nav>
+    <h2>Tout sur la league</h2>
+    <p>Les players, les teams et l'actu des matchs</p>
+</header>
 {% endblock %}
 
 {% block main %}
@@ -25,7 +21,10 @@
             <h3>La team à la une</h3>
             <article>
                 <h4>{{ team.name }}</h4>
-                <img src="{{ team.logo.getUrl() }}" alt="{{ team.logo.getAlt() }}"/>
+                {% for player in players %}
+                <h1>{{ player.team.logo.url}}</h1>
+                {% endfor %}
+                
             </article>
             {% for player in players %}
             <article>

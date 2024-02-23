@@ -3,8 +3,9 @@
 {% block players %}
 {% for player in players %}
                     <section class="player_cards">
-                        <img src="{{ player.getPortrait().getUrl() }}" alt="{{ player.getPortrait().getUrl() }}">
+                        <img src="{{ player.team.logo.url}}" alt="{{ player.team.logo.alt}}">
                         <p>{{ player.getNickName() }}</p>
+                        
                     </section>
             {% endfor %}
 {% endblock %}

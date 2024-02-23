@@ -1,37 +1,36 @@
 <?php
 
-class TeamManager extends AbstractManager
-{
-    public function findAllTeams()
-    {
-        $selectTeamsQuery = $this->db->prepare('SELECT * FROM teams');
-        $selectTeamsQuery->execute();
-        $teams_data = $selectTeamsQuery->fetchAll(PDO::FETCH_ASSOC);
+class TeamManager extends AbstractManager{
+
+    public function findAll() : array {
+        $query = $this->db->prepare('SELECT * FROM teams');
+        $query->execute();
+        $teams = $query->fetchAll(PDO::FETCH_ASSOC);
         $teams_array = [];
 
-        foreach ($teams_data as $team_data) {
-            $team = new Team($team_data['name'], $team_data['description'], $team_data['logoId']);
-            $team->setId($team_data['id']);
-            $teams_array[] = $team;
+        foreach($teams as $team) {
+            $mm = new MediaManager();
+            $media = $mm->findOne($team["logo"]);
+            $newTeam = new Team($team["name"], $team["description"], $media);
+            $newTeam->setId($team["id"]);
+            $teams_array[] = $newTeam;
         }
 
         return $teams_array;
     }
 
-    public function findTeamById($id)
-    {
-        $selectTeamQuery = $this->db->prepare('SELECT * FROM teams WHERE id = ?');
-        $selectTeamQuery->execute([$id]);
-        $team_data = $selectTeamQuery->fetch(PDO::FETCH_ASSOC);
+    public function findOne(int $teamId) : Team {
+        $query = $this->db->prepare('SELECT * FROM teams WHERE id = :id');
+        $parameters = [
+            "id" => $teamId
+        ];
+        $query->execute($parameters);
+        $team = $query->fetch(PDO::FETCH_ASSOC);
+        $mm = new MediaManager();
+        $media = $mm->findOne($team["logo"]);
+        $newTeam = new Team($team["name"], $team["description"], $media);
+        $newTeam->setId($team["id"]);
 
-        if (!$team_data) {
-            return null; // Team not found
-        }
-
-        $team = new Team($team_data['name'], $team_data['description'], $team_data['logoId']);
-        $team->setId($team_data['id']);
-
-        return $team;
+        return $newTeam;
     }
-
 }

@@ -14,8 +14,10 @@ class Router
 
             if ($route === "games") {
                 $bc->teams();
-            } elseif ($route === "team") {
-                $bc->team();
+                
+            } elseif ($route === "teams") {
+                
+                $bc->teams();
             } elseif ($route === "players") {
                 $bc->players();
             } else {

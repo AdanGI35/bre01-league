@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0b132b;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 20px;
+}
+
+.player_cards {
+  border: 1px solid #ddd; 
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+.player_cards img {
+  width: 100px; 
+  height: auto;
+  border-radius: 50%;
+}
+
+.player_cards p {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.player_cards a {
+  color: #45a0ec;
+  text-decoration: none;
+  display: block;
+  margin-top: 10px;
+}
+
+.player_cards a:hover {
+  text-decoration: underline;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  margin-top: 20px;
+}
+
+article {
+  display: inline-block;
+  margin: 10px;
+}
+
+img {
+  width: 100px; 
+  height: auto;
+}
+
+footer {
+  padding: 10px;
+  text-align: center;
+  background-color: #0b132b;
+}

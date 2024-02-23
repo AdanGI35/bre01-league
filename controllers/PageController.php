@@ -9,6 +9,7 @@ class PageController extends AbstractController
         $teams = $tm->findAll();
         $pm = new PlayerManager();
         $players = $pm->findAll();
+        dump($players);
         $gm = new GameManager();
         $games = $gm->findAll();
         $lastGame = $gm->findLast();
@@ -18,14 +19,15 @@ class PageController extends AbstractController
     public function teams() : void {
         $tm = new TeamManager();
         $teams = $tm->findAll();
+        // dump($teams);
         $this->render("teams.html.twig", ["teams"=>$teams]);
     }
 
     public function team() : void {
-        $tm = new TeamManager();
-        $pm = new PlayerManager();
-        $players = $pm->findAll();
-        $team = $tm->findOne($_GET["id"]);
+        // $tm = new TeamManager();
+        // $pm = new PlayerManager();
+        // $players = $pm->findAll();
+        
         $this->render("team.html.twig", ["team"=>$team, "players"=>$players]);
     }
 
