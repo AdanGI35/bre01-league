@@ -1,22 +1,47 @@
 <?php
-class GameManager extends AbstractManager
-{
-    public function findAllGames()
-    {
-        $selectGamesQuery = $this -> db -> prepare ('SELECT games.*, teams.id AS team_id FROM games JOIN teams ON games.team_1 = team.id');
-        $selectGamesQuery -> execute ();
-        $games_data = $selectGamesQuery -> fetchAll (PDO::FETCH_ASSOC);
+
+class GameManager extends AbstractManager {
+    
+    public function findAll() : array {
+        $query = $this->db->prepare("
+            SELECT *
+            FROM games
+        ");
+        $query->execute();
+        $games = $query->fetchAll(PDO::FETCH_ASSOC);
+
         $games_array = [];
 
-        foreach ( $games_data as $key => $game_data){
-            $first =new Team ('');
-            $second = new Team ();
-            $winner = new Team ();
-            $game = new Game ($game_data['name'], date ('Y-m-d H:i:s'), $first, $second, $winner);
-            $game -> setId ($game_data ['id']);
-            $game_array[]= $game;
-
+        foreach($games as $game) {
+            $tm = new TeamManager();
+            $team1 = $tm->findOne($game["team_1"]);
+            $team2 = $tm->findOne($game["team_2"]);
+            $winTeam = $tm->findOne($game["winner"]);
+            $newGame = new Game($game["name"], $game["date"], $team1, $team2, $winTeam);
+            $newGame->setId($game["id"]);
+            $games_array[] = $newGame;
         }
         return $games_array;
-}
+    }
+
+    public function findLast() : Game {
+        $query = $this->db->prepare("
+            SELECT *
+            FROM games
+            ORDER BY games.date DESC
+            LIMIT 1
+        ");
+        $query->execute();
+        $game = $query->fetch(PDO::FETCH_ASSOC);
+
+        $tm = new TeamManager();
+        $team1 = $tm->findOne($game["team_1"]);
+        $team2 = $tm->findOne($game["team_2"]);
+        $winTeam = $tm->findOne($game["winner"]);
+        $newGame = new Game($game["name"], $game["date"], $team1, $team2, $winTeam);
+        $newGame->setId($game["id"]);
+
+        return $newGame;
+
+    }
 }

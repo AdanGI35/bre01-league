@@ -1,92 +1,109 @@
 <?php
 
-class PlayerPerformance
-{
-    private ?int $id = null;
-
-
-    public function __construct(private int $playerId, private int $gameId, private  int $points, private int $assists)
+class PlayerPerformance {
+    private int $id;
+    public function __construct(private Player $player, private Game $game, private int $points, private int $assists)
     {
-
+        
     }
 
     /**
-     * @return int|null
-     */
-    public function getId(): ?int
+     * Get the value of id
+     */ 
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
-     * @return int
-     */
-    public function getPlayerId(): int
+     * Get the value of player
+     */ 
+    public function getPlayer()
     {
-        return $this->playerId;
+        return $this->player;
     }
 
     /**
-     * @param int $playerId
-     */
-    public function setPlayerId(int $playerId): void
+     * Set the value of player
+     *
+     * @return  self
+     */ 
+    public function setPlayer($player)
     {
-        $this->playerId = $playerId;
+        $this->player = $player;
+
+        return $this;
     }
 
     /**
-     * @return int
-     */
-    public function getGameId(): int
+     * Get the value of game
+     */ 
+    public function getGame()
     {
-        return $this->gameId;
+        return $this->game;
     }
 
     /**
-     * @param int $gameId
-     */
-    public function setGameId(int $gameId): void
+     * Set the value of game
+     *
+     * @return  self
+     */ 
+    public function setGame($game)
     {
-        $this->gameId = $gameId;
+        $this->game = $game;
+
+        return $this;
     }
 
     /**
-     * @return int
-     */
-    public function getPoints(): int
+     * Get the value of points
+     */ 
+    public function getPoints()
     {
         return $this->points;
     }
 
     /**
-     * @param int $points
-     */
-    public function setPoints(int $points): void
+     * Set the value of points
+     *
+     * @return  self
+     */ 
+    public function setPoints($points)
     {
         $this->points = $points;
+
+        return $this;
     }
 
     /**
-     * @return int
-     */
-    public function getAssists(): int
+     * Get the value of assists
+     */ 
+    public function getAssists()
     {
         return $this->assists;
     }
 
     /**
-     * @param int $assists
-     */
-    public function setAssists(int $assists): void
+     * Set the value of assists
+     *
+     * @return  self
+     */ 
+    public function setAssists($assists)
     {
         $this->assists = $assists;
+
+        return $this;
     }
 }

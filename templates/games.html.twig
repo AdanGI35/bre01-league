@@ -1,0 +1,12 @@
+{% extends "layout.html.twig" %}
+  {% block content %}
+  {% block teams %}
+ {% for game in games %}
+        <img src="{{ game.getLogo().getUrl() }}" alt="{{ game.getLogo().getUrl() }}">
+        <section>
+            <h2>{{ game.getName() }}</h2>
+            <p>{{ game.getDescription() }}</p>
+            <a href="index.php?route=game&id={{ game.getId()}}" class="btn">DECOUVREZ {{ game.getName() }} </a>
+    {% endfor %}
+{% endblock %}
+        {% endblock %}

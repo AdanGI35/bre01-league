@@ -1,59 +1,69 @@
-<?php
+<?php 
 
-class Media
-{
-    private ?int $id = null;
-
-
+class Media {
+    private ?int $id;
     public function __construct(private string $url, private string $alt)
     {
+        
     }
 
     /**
-     * @return int|null
-     */
-    public function getId(): ?int
+     * Get the value of id
+     */ 
+    public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
-     * @return string
-     */
-    public function getUrl(): string
+     * Get the value of url
+     */ 
+    public function getUrl()
     {
         return $this->url;
     }
 
     /**
-     * @param string $url
-     */
-    public function setUrl(string $url): void
+     * Set the value of url
+     *
+     * @return  self
+     */ 
+    public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
     }
 
     /**
-     * @return string
-     */
-    public function getAlt(): string
+     * Get the value of alt
+     */ 
+    public function getAlt()
     {
         return $this->alt;
     }
 
     /**
-     * @param string $alt
-     */
-    public function setAlt(string $alt): void
+     * Set the value of alt
+     *
+     * @return  self
+     */ 
+    public function setAlt($alt)
     {
         $this->alt = $alt;
+
+        return $this;
     }
 }
